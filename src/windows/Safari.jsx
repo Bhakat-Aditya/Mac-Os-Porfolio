@@ -54,7 +54,7 @@ function Safari() {
               <div className="content">
                 <p>{date}</p>
                 <h3>{title}</h3>
-                <a href={link} target="_blank" rel="noopener noreferrer">Read more<MoveRight className="icon-hover" /></a>
+                <a href={link} target="_blank" rel="noopener noreferrer">Download MarkSheet<MoveRight className="icon-hover" /></a>
               </div>
             </div>
           ))}

@@ -44,7 +44,7 @@ const dockApps = [
     },
     {
         id: "safari",
-        name: "Articles", // was "Safari"
+        name: "Education", // was "Safari"
         icon: "safari.png",
         canOpen: true,
     },
@@ -77,52 +77,48 @@ const dockApps = [
 const blogPosts = [
     {
         id: 1,
-        date: "Sep 2, 2025",
+        date: "2006 - 2020",
         title:
-            "TypeScript Explained: What It Is, Why It Matters, and How to Master It",
-        image: "/images/blog1.png",
-        link: "https://jsmastery.com/blog/typescript-explained-what-it-is-why-it-matters-and-how-to-master-it",
+            "Class X (ISCE) ",
+        image: "/images/edu1.jpg",
+        link: "https://drive.google.com/file/d/1ontRm56syAiQ4_rAsCJwvx0SaZG62sb3/view?usp=drive_link",
     },
     {
         id: 2,
-        date: "Aug 28, 2025",
-        title: "The Ultimate Guide to Mastering Three.js for 3D Development",
-        image: "/images/blog2.png",
-        link: "https://jsmastery.com/blog/the-ultimate-guide-to-mastering-three-js-for-3d-development",
+        date: "2020 - 2022",
+        title: "Class XII (ISE) ",
+        image: "/images/edu2.jpg",
+        link: "https://drive.google.com/file/d/1VU9nxF8CxFEXUNlaZgUqcJM567JLvJrK/view?usp=drive_link",
     },
     {
         id: 3,
-        date: "Aug 15, 2025",
-        title: "The Ultimate Guide to Mastering GSAP Animations",
-        image: "/images/blog3.png",
-        link: "https://jsmastery.com/blog/the-ultimate-guide-to-mastering-gsap-animations",
+        date: "2022-Present",
+        title: "Bachelor of Commerce (B.Com) Honours in Accountancy",
+        image: "/images/edu3.jpg",
+        link: "https://drive.google.com/file/d/1H_UOy52-tH8ljsjNMk3kzUREO8hJKl6k/view?usp=drive_link",
     },
 ];
 
 const techStack = [
     {
         category: "Frontend",
-        items: ["React.js", "Next.js", "TypeScript"],
-    },
-    {
-        category: "Mobile",
-        items: ["React Native", "Expo"],
+        items: ["React.js", "HTML"],
     },
     {
         category: "Styling",
-        items: ["Tailwind CSS", "Sass", "CSS"],
+        items: ["Tailwind CSS", "CSS"],
     },
     {
-        category: "Backend",
-        items: ["Node.js", "Express", "NestJS", "Hono"],
+        category: "Backend__(Learning)",
+        items: ["Node.js", "Express"],
     },
     {
-        category: "Database",
-        items: ["MongoDB", "PostgreSQL"],
+        category: "Database__(Learning)",
+        items: ["MongoDB"],
     },
     {
         category: "Dev Tools",
-        items: ["Git", "GitHub", "Docker"],
+        items: ["Git", "GitHub"],
     },
 ];
 
@@ -132,28 +128,28 @@ const socials = [
         text: "Github",
         icon: "/icons/github.svg",
         bg: "#f4656b",
-        link: "https://github.com/JavaScript-Mastery-Pro",
+        link: "https://github.com/Bhakat-Aditya",
     },
     {
         id: 2,
-        text: "Platform",
+        text: "Instagram",
         icon: "/icons/atom.svg",
         bg: "#4bcb63",
-        link: "https://jsmastery.com/",
+        link: "https://www.instagram.com/aditya_bhakat69/",
     },
     {
         id: 3,
         text: "Twitter/X",
         icon: "/icons/twitter.svg",
         bg: "#ff866b",
-        link: "https://x.com/jsmasterypro",
+        link: "https://x.com/ADITYABHAK4172",
     },
     {
         id: 4,
         text: "LinkedIn",
         icon: "/icons/linkedin.svg",
         bg: "#05b6f6",
-        link: "https://www.linkedin.com/company/javascriptmastery/posts/?feedView=all",
+        link: "https://www.linkedin.com/in/aditya-bhakat-anshu/",
     },
 ];
 
@@ -188,19 +184,19 @@ const photosLinks = [
 const gallery = [
     {
         id: 1,
-        img: "/images/gal1.png",
+        img: "/images/gal1.jpg",
     },
     {
         id: 2,
-        img: "/images/gal2.png",
+        img: "/images/gal2.jpg",
     },
     {
         id: 3,
-        img: "/images/gal3.png",
+        img: "/images/gal3.webp",
     },
     {
         id: 4,
-        img: "/images/gal4.png",
+        img: "/images/gal4.webp",
     },
 ];
 
@@ -225,52 +221,40 @@ const WORK_LOCATION = {
         // ▶ Project 1
         {
             id: 5,
-            name: "Nike Ecommerce Website Application",
+            name: "Gaming Website",
             icon: "/images/folder.png",
             kind: "folder",
             position: "top-10 left-5", // icon position inside Finder
-            windowPosition: "top-[5vh] left-5", // optional: Finder window position
+            windowPosition: "top-[5vh] left-7", // optional: Finder window position
             children: [
                 {
                     id: 1,
-                    name: "Nike Project.txt",
+                    name: "Gaming Website Project.txt",
                     icon: "/images/txt.png",
                     kind: "file",
                     fileType: "txt",
                     position: "top-5 left-10",
                     description: [
-                        "The Nike eCommerce website is a sleek and modern platform designed for shopping the latest Nike collections.",
-                        "Instead of a simple online store, it delivers an immersive experience with bold visuals, interactive product displays, and smooth navigation.",
-                        "Think of it like walking into a flagship Nike store—but right from your phone or laptop.",
-                        "It's built with Next.js and Tailwind, ensuring fast performance, responsive design, and a clean, premium look.",
+                        "Made this using React.js and Tailwind CSS for a sleek, modern look. Used GSAP a lot to create smooth animations and engaging interactions throughout the site and ensured it's fully responsive so it looks great on all devices.",
                     ],
                 },
                 {
                     id: 2,
-                    name: "nike.com",
+                    name: "gaming-gsap-website.app",
                     icon: "/images/safari.png",
                     kind: "file",
                     fileType: "url",
-                    href: "https://youtu.be/fZdTYswuZjU?si=Awjl-pIst9e09_UU",
+                    href: "https://gaming-gsap-website.vercel.app/",
                     position: "top-10 right-20",
                 },
                 {
                     id: 4,
-                    name: "nike.png",
+                    name: "gaming-gsap-website.png",
                     icon: "/images/image.png",
                     kind: "file",
                     fileType: "img",
                     position: "top-52 right-80",
-                    imageUrl: "/images/project-1.png",
-                },
-                {
-                    id: 5,
-                    name: "Design.fig",
-                    icon: "/images/plain.png",
-                    kind: "file",
-                    fileType: "fig",
-                    href: "https://google.com",
-                    position: "top-60 right-20",
+                    imageUrl: "/images/GamingWebsite.png",
                 },
             ],
         },
@@ -278,7 +262,7 @@ const WORK_LOCATION = {
         // ▶ Project 2
         {
             id: 6,
-            name: "AI Resume Analyzer",
+            name: "Mojito Shop Website",
             icon: "/images/folder.png",
             kind: "folder",
             position: "top-52 right-80",
@@ -286,100 +270,76 @@ const WORK_LOCATION = {
             children: [
                 {
                     id: 1,
-                    name: "AI Resume Analyzer Project.txt",
+                    name: "Mojito Shop Website Project.txt",
                     icon: "/images/txt.png",
                     kind: "file",
                     fileType: "txt",
                     position: "top-5 right-10",
                     description: [
-                        "AI Resume Analyzer is a smart tool that helps you perfect your resume with instant feedback.",
-                        "Instead of guessing what recruiters want, you get AI-powered insights on keywords, formatting, and overall impact.",
-                        "Think of it like having a career coach—pointing out strengths, fixing weaknesses, and boosting your chances of landing interviews.",
-                        "It's built with Next.js and Tailwind, so it runs fast, looks professional, and works seamlessly on any device.",
+                        "This Mojito Shop Website is built with React.js and styled using Tailwind CSS to create a fresh and inviting look. The site features smooth animations powered by GSAP, enhancing the user experience with engaging interactions. Designed to be fully responsive, it ensures a seamless browsing experience across all devices, making it easy for customers to explore our mojito offerings anytime, anywhere.",
                     ],
                 },
                 {
                     id: 2,
-                    name: "ai-resume-analyzer.com",
+                    name: "mojito-shop-website.com",
                     icon: "/images/safari.png",
                     kind: "file",
                     fileType: "url",
-                    href: "https://youtu.be/iYOz165wGkQ?si=R1hs8Legl200m0Cl",
+                    href: "https://cocktail-bar-omega.vercel.app/",
                     position: "top-20 left-20",
                 },
                 {
                     id: 4,
-                    name: "ai-resume-analyzer.png",
+                    name: "mojito-shop-website.png",
                     icon: "/images/image.png",
                     kind: "file",
                     fileType: "img",
                     position: "top-52 left-80",
-                    imageUrl: "/images/project-2.png",
-                },
-                {
-                    id: 5,
-                    name: "Design.fig",
-                    icon: "/images/plain.png",
-                    kind: "file",
-                    fileType: "fig",
-                    href: "https://google.com",
-                    position: "top-60 left-5",
-                },
+                    imageUrl: "/images/Mojito.png",
+                }
             ],
         },
 
         // ▶ Project 3
         {
             id: 7,
-            name: "Food Delivery App",
+            name: "Protein Shake Landing Page",
             icon: "/images/folder.png",
             kind: "folder",
             position: "top-10 left-80",
-            windowPosition: "top-[33vh] left-7",
+            windowPosition: "top-[35vh] left-7",
             children: [
                 {
                     id: 1,
-                    name: "Food Delivery App Project.txt",
+                    name: "Protein Shake Landing Page.txt",
                     icon: "/images/txt.png",
                     kind: "file",
                     fileType: "txt",
                     position: "top-5 left-10",
                     description: [
-                        "Our Food Delivery App is a fast and convenient way to order meals from your favorite restaurants.",
-                        "Instead of making calls or waiting in line, you can browse menus, customize orders, and track deliveries in real time.",
-                        "Think of it like having your favorite restaurants in your pocket—ready to deliver anytime, anywhere.",
-                        "It’s built with React Native, so it works smoothly on both iOS and Android with a clean, modern design.",
+                        "This Protein Shake Landing Page is crafted using React.js for a dynamic user experience and styled with Tailwind CSS to achieve a clean, modern aesthetic. The page incorporates GSAP animations to create engaging visual effects that highlight the product's features. Designed with responsiveness in mind, the landing page ensures an optimal viewing experience across all devices, making it easy for potential customers to learn about and purchase the protein shake.",
                     ],
                 },
                 {
                     id: 2,
-                    name: "food-delivery-app.com",
+                    name: "protein-shake-landing-page.com",
                     icon: "/images/safari.png",
                     kind: "file",
                     fileType: "url",
-                    href: "https://youtu.be/LKrX390fJMw?si=cExkuVhf2DTV9G2-",
+                    href: "https://spylt-eight-lovat.vercel.app/",
                     position: "top-10 right-20",
                 },
                 {
                     id: 4,
-                    name: "food-delivery-app.png",
+                    name: "protein-shake-landing-page.png",
                     icon: "/images/image.png",
                     kind: "file",
                     fileType: "img",
                     position: "top-52 right-80",
-                    imageUrl: "/images/project-3.png",
-                },
-                {
-                    id: 5,
-                    name: "Design.fig",
-                    icon: "/images/plain.png",
-                    kind: "file",
-                    fileType: "fig",
-                    href: "https://google.com",
-                    position: "top-60 right-20",
-                },
+                    imageUrl: "/images/Splty.png",
+                }
             ],
-        },
+        }
     ],
 };
 
@@ -397,25 +357,25 @@ const ABOUT_LOCATION = {
             kind: "file",
             fileType: "img",
             position: "top-10 left-5",
-            imageUrl: "/images/adrian.jpg",
+            imageUrl: "/images/dp.jpg",
         },
         {
             id: 2,
-            name: "casual-me.png",
+            name: "nature_Lover_me.webp",
             icon: "/images/image.png",
             kind: "file",
             fileType: "img",
-            position: "top-28 right-72",
-            imageUrl: "/images/adrian-2.jpg",
+            position: "top-28 right-42",
+            imageUrl: "/images/gal4.webp",
         },
         {
             id: 3,
-            name: "conference-me.png",
+            name: "bullet_Lover_me.webp",
             icon: "/images/image.png",
             kind: "file",
             fileType: "img",
-            position: "top-52 left-80",
-            imageUrl: "/images/adrian-3.jpeg",
+            position: "top-62 left-60",
+            imageUrl: "/images/gal3.webp",
         },
         {
             id: 4,
@@ -425,12 +385,18 @@ const ABOUT_LOCATION = {
             fileType: "txt",
             position: "top-60 left-5",
             subtitle: "Meet the Developer Behind the Code",
-            image: "/images/adrian.jpg",
+            image: "/images/gal2.jpg",
             description: [
-                "Hey! I’m Adrian 👋, a web developer who enjoys building sleek, interactive websites that actually work well.",
-                "I specialize in JavaScript, React, and Next.js—and I love making things feel smooth, fast, and just a little bit delightful.",
-                "I’m big on clean UI, good UX, and writing code that doesn’t need a search party to debug.",
-                "Outside of dev work, you'll find me tweaking layouts at 2AM, sipping overpriced coffee, or impulse-buying gadgets I absolutely convinced myself I needed 😅",
+                `I’m a final-year B.Com (Accounts) graduate with a strong analytical
+          mindset, currently transitioning into web development. I specialize in
+          creating responsive, user-friendly interfaces using HTML, CSS,
+          JavaScript, React, and modern animation tools like GSAP to deliver
+          smooth interactions and visually striking experiences. Continuously
+          learning through hands-on projects, I’m now expanding my skills into
+          backend development to become a full-stack developer. By combining
+          financial knowledge with technical adaptability and a focus on clean
+          code and meaningful design, I aim to build digital solutions that not
+          only work efficiently but also connect with users in a valuable way.`
             ],
         },
     ],
@@ -449,8 +415,6 @@ const RESUME_LOCATION = {
             icon: "/images/pdf.png",
             kind: "file",
             fileType: "pdf",
-            // you can add `href` if you want to open a hosted resume
-            // href: "/your/resume/path.pdf",
         },
     ],
 };

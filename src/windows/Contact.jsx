@@ -12,7 +12,7 @@ function Contact() {
       </div>
       <div className="p-5 space-y-5">
         <img
-          src="/images/adrian.jpg"
+          src="/images/dp.jpg"
           alt="adrian"
           className="w-20 rounded-full"
         />
