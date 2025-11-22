@@ -1,10 +1,12 @@
 import { dockApps } from "#constants";
+import useWindowStore from "#store/window";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useRef } from "react";
 import { Tooltip } from "react-tooltip";
 
 function Dock() {
+  const { openWindow, closeWindow, windows } = useWindowStore();
   const dockRef = useRef(null);
 
   useGSAP(() => {
@@ -29,7 +31,7 @@ function Dock() {
       });
     };
     const handleMouseMove = (e) => {
-      const {left} = dock.getBoundingClientRect();
+      const { left } = dock.getBoundingClientRect();
       animateIcons(e.clientX - left);
     };
     const resetIcons = () => {
@@ -50,27 +52,40 @@ function Dock() {
     };
   }, []);
 
-  const toggleApp = (appId) => {};
+  const toggleApp = (app) => {
+    if (!app.canOpen) return;
+
+    const window = windows[app.id];
+
+    if (window.isOpen) {
+      closeWindow(app.id);
+    } else {
+      openWindow(app.id);
+    }
+
+    console.log(windows);
+  };
+
   return (
     <section id="dock">
       <div ref={dockRef} className="dock-container">
-        {dockApps.map((app) => (
-          <div key={app.id} className="relative flex justify-center">
+        {dockApps.map(({id , name, icon, canOpen}) => (
+          <div key={id} className="relative flex justify-center">
             <button
               type="button"
               className="dock-icon"
-              aria-label={app.name}
+              aria-label={name}
               data-tooltip-id="dock-tooltip"
-              data-tooltip-content={app.name}
+              data-tooltip-content={name}
               data-tooltip-delay-show={150}
-              disabled={!app.canOpen}
-              onClick={() => toggleApp(app.id, app.canOpen)}
+              disabled={!canOpen}
+              onClick={() => toggleApp({id, name, icon, canOpen})}
             >
               <img
-                src={`/images/${app.icon}`}
-                alt={app.name}
+                src={`/images/${icon}`}
+                alt={name}
                 loading="lazy"
-                className={app.canOpen ? "" : "opacity-50 cursor-not-allowed"}
+                className={canOpen ? "" : "opacity-50 cursor-not-allowed"}
               />
             </button>
           </div>
