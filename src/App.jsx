@@ -1,28 +1,41 @@
 import React, { useState } from "react";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
+import clsx from "clsx";
 
-// Import Boot from your components index
-import { Dock, Home, Navbar, Welcome, Boot } from "#components";
+import useWallpaperStore from "#store/wallpaper"; 
+import useThemeStore from "#store/theme"; // Import Theme Store
+
+import { Dock, Home, Navbar, Welcome, Boot, ContextMenu } from "#components";
 import { Safari, Terminal, Resume, Finder, Text, Image, Contact, Photos } from "#windows";
 
 gsap.registerPlugin(Draggable);
 
 function App() {
-  // State to track if the boot sequence is active
   const [isLoading, setIsLoading] = useState(true);
+  const { wallpapers, activeIndex } = useWallpaperStore();
+  const { isDark } = useThemeStore(); // Use Theme Store
+  const currentWallpaper = wallpapers[activeIndex];
 
   return (
-    <>
+    <div 
+      // Apply 'dark' class if isDark is true
+      className={clsx(
+        "w-screen h-screen overflow-hidden bg-center bg-cover no-repeat transition-all duration-700 ease-in-out",
+        isDark && "dark"
+      )}
+      style={{ backgroundImage: `url(${currentWallpaper})` }}
+    >
       {isLoading ? (
-        // Show Boot Screen -> passes false to state when animation ends
         <Boot onComplete={() => setIsLoading(false)} />
       ) : (
-        // Show Desktop Interface
-        <div className="animate-fade-in"> {/* Optional: Add a fade-in class if you want */}
+        <div className="animate-fade-in w-full h-full relative text-gray-900 dark:text-gray-100">
           <Navbar />
           <Welcome />
+          
+          <Home />
           <Dock />
+          <ContextMenu />
 
           <Terminal />
           <Safari />
@@ -32,10 +45,9 @@ function App() {
           <Image />
           <Contact />
           <Photos />
-          <Home />
         </div>
       )}
-    </>
+    </div>
   );
 }
 

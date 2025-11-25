@@ -16,7 +16,8 @@ function Photo() {
           <Search className="icon" />
         </div>
       </div>
-      <div className="flex w-full">
+      {/* UPDATED: Added 'flex-1 overflow-hidden' to fill remaining height */}
+      <div className="flex w-full flex-1 overflow-hidden">
         <div className="sidebar">
           <h2>Photos</h2>
           <ul>
@@ -44,7 +45,7 @@ function Photo() {
                   })
                 }
               >
-                <img src={img} alt={`Gallery image ${id}`} />
+                <img src={img} alt={`Gallery image ${id}`} loading="lazy" />
               </li>
             ))}
           </ul>
@@ -55,5 +56,5 @@ function Photo() {
 }
 
 const PhotosWindow = WindowWrapper(Photo, "photos");
-PhotosWindow.displayName = "Photos"
+PhotosWindow.displayName = "Photos";
 export default PhotosWindow;

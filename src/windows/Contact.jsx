@@ -10,10 +10,12 @@ function Contact() {
         <WindowControls target="contact" />
         <h2>Contact Me</h2>
       </div>
-      <div className="p-5 space-y-5">
+      {/* Added 'contact-content' class. 
+          This connects to index.css to handle Dark Mode background and Scrolling. */}
+      <div className="contact-content space-y-5">
         <img
           src="/images/dp.jpg"
-          alt="adrian"
+          alt="Aditya"
           className="w-20 rounded-full"
         />
         <h3>Let's Connect</h3>
