@@ -58,6 +58,7 @@ const setupTextHover = (container, type) => {
 function Welcome() {
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
+  
   useGSAP(() => {
     const titleCleanup = setupTextHover(titleRef.current, "title");
     const subtitleCleanup = setupTextHover(subtitleRef.current, "subtitle");
@@ -67,18 +68,23 @@ function Welcome() {
       subtitleCleanup && subtitleCleanup();
     };
   }, []);
+
   return (
     <section id="welcome">
-      <p ref={subtitleRef}>
-        {renderText(
-          "Hey I'm Aditya! Welcome to my",
-          "text-3xl font-georama ",
-          100
-        )}
-      </p>
-      <h1 ref={titleRef} className="mt-7">
-        {renderText(" Portfolio", "text-9xl italic font-georama ")}
-      </h1>
+      {/* Added bluish backdrop container for readability */}
+      <div className="bg-blue-950/40 backdrop-blur-xl p-12 rounded-3xl border border-white/10 shadow-2xl text-center">
+        <p ref={subtitleRef} className="text-blue-100">
+          {renderText(
+            "Hey I'm Aditya! Welcome to my",
+            "text-3xl font-georama cursor-default",
+            100
+          )}
+        </p>
+        <h1 ref={titleRef} className="mt-4 text-white">
+          {renderText(" Portfolio", "text-9xl italic font-georama cursor-default")}
+        </h1>
+      </div>
+
       <div className="small-screen">
         <p>This Portfolio is designed for desktop/tablet screens only.</p>
       </div>

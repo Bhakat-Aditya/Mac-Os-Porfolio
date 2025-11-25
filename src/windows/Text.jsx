@@ -16,7 +16,8 @@ function Text() {
         <WindowControls target="txtfile" />
         <h2>{name}</h2>
       </div>
-      <div className="p-5 space-y-6 bg-white">
+      {/* Added 'text-content' class */}
+      <div className="text-content p-5 space-y-6 bg-white h-full overflow-y-auto">
         {image ? (
           <div className="w-full">
             <img src={image} alt={name} className="w-full h-auto rounded-2xl" />

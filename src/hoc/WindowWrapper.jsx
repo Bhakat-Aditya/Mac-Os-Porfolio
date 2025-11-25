@@ -17,12 +17,13 @@ function WindowWrapper(Component, windowKey) {
       const el = ref.current;
       if (!el || !isOpen) return;
 
-      // Reset any leftover styles from previous states
       if (!isMaximized) {
         gsap.set(el, { clearProps: "all" });
       }
 
-      el.style.display = "block";
+      // FIX: Changed 'block' to 'flex' to preserve layout
+      el.style.display = "flex"; 
+      
       gsap.fromTo(
         el,
         { scale: 0.8, opacity: 0, y: 40 },
@@ -54,7 +55,6 @@ function WindowWrapper(Component, windowKey) {
       if (!el || !isOpen) return;
 
       if (isMaximized) {
-        // 1. CAPTURE CURRENT STATE
         const rect = el.getBoundingClientRect();
         historyRef.current = {
           left: rect.left,
@@ -65,8 +65,6 @@ function WindowWrapper(Component, windowKey) {
 
         draggableRef.current?.disable();
 
-        // 2. LOCK POSITION IN PIXELS (Neutralize CSS classes like -translate-y-1/2)
-        // We set the element to fixed position at its current visual location
         gsap.set(el, {
           position: "fixed",
           left: rect.left,
@@ -76,16 +74,15 @@ function WindowWrapper(Component, windowKey) {
           margin: 0,
           x: 0,
           y: 0,
-          transform: "none", // Removes CSS transforms to prevent conflicts
+          transform: "none",
         });
 
-        // 3. ANIMATE TO FULL SCREEN
         gsap.to(el, {
           left: 0,
           top: 0,
           width: "100vw",
           height: "100vh",
-          maxWidth: "none", // OVERRIDE Tailwind max-w-2xl/3xl
+          maxWidth: "none",
           maxHeight: "none",
           borderRadius: 0,
           duration: 0.4,
@@ -94,21 +91,18 @@ function WindowWrapper(Component, windowKey) {
       } else {
         draggableRef.current?.enable();
 
-        // 4. ANIMATE BACK TO SAVED PIXEL STATE
         gsap.to(el, {
           left: historyRef.current.left,
           top: historyRef.current.top,
           width: historyRef.current.width,
           height: historyRef.current.height,
-          borderRadius: "0.75rem", // rounded-xl
+          borderRadius: "0.75rem",
           duration: 0.4,
           ease: "power3.inOut",
-          // 5. RESET TO CSS CLASSES
           onComplete: () => {
-            // Clear all inline styles so Tailwind classes (like left-1/2) take over again
             gsap.set(el, { clearProps: "all" });
-            // Ensure display block is kept (gsap clearProps might remove display if it was inline)
-            el.style.display = "block";
+            // FIX: Ensure display stays as 'flex' after animation resets
+            el.style.display = "flex"; 
           },
         });
       }
@@ -117,7 +111,8 @@ function WindowWrapper(Component, windowKey) {
     useLayoutEffect(() => {
       const el = ref.current;
       if (!el) return;
-      el.style.display = isOpen ? "block" : "none";
+      // FIX: Use 'flex' here as well
+      el.style.display = isOpen ? "flex" : "none"; 
     }, [isOpen]);
 
     return (
