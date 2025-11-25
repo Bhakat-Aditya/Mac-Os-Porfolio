@@ -4,49 +4,72 @@ import { Draggable } from "gsap/Draggable";
 import clsx from "clsx";
 
 import useWallpaperStore from "#store/wallpaper"; 
-import useThemeStore from "#store/theme"; // Import Theme Store
+import useThemeStore from "#store/theme";
 
-import { Dock, Home, Navbar, Welcome, Boot, ContextMenu } from "#components";
+import { Dock, Home, Navbar, Welcome, Boot, ContextMenu, Spotlight, Login } from "#components";
 import { Safari, Terminal, Resume, Finder, Text, Image, Contact, Photos } from "#windows";
 
 gsap.registerPlugin(Draggable);
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  // 1. Sequence States: Booting -> Locked -> Desktop
+  const [isBooting, setIsBooting] = useState(true);
+  const [isLocked, setIsLocked] = useState(true);
+  
   const { wallpapers, activeIndex } = useWallpaperStore();
-  const { isDark } = useThemeStore(); // Use Theme Store
-  const currentWallpaper = wallpapers[activeIndex];
+  const { isDark } = useThemeStore();
 
+  // 2. Render Logic
+  if (isBooting) {
+    return <Boot onComplete={() => setIsBooting(false)} />;
+  }
+
+  if (isLocked) {
+    return <Login onUnlock={() => setIsLocked(false)} />;
+  }
+
+  // 3. Desktop Interface
   return (
     <div 
-      // Apply 'dark' class if isDark is true
       className={clsx(
-        "w-screen h-screen overflow-hidden bg-center bg-cover no-repeat transition-all duration-700 ease-in-out",
+        "w-screen h-screen overflow-hidden relative", 
         isDark && "dark"
       )}
-      style={{ backgroundImage: `url(${currentWallpaper})` }}
     >
-      {isLoading ? (
-        <Boot onComplete={() => setIsLoading(false)} />
-      ) : (
-        <div className="animate-fade-in w-full h-full relative text-gray-900 dark:text-gray-100">
-          <Navbar />
-          <Welcome />
-          
-          <Home />
-          <Dock />
-          <ContextMenu />
+      {/* --- WALLPAPER LAYERS (The Fix) --- */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        {wallpapers.map((bg, index) => (
+          <div
+            key={index}
+            className={clsx(
+              "absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out",
+              index === activeIndex ? "opacity-100" : "opacity-0"
+            )}
+            style={{ backgroundImage: `url(${bg})` }}
+          />
+        ))}
+      </div>
 
-          <Terminal />
-          <Safari />
-          <Resume />
-          <Finder />
-          <Text />
-          <Image />
-          <Contact />
-          <Photos />
-        </div>
-      )}
+      {/* --- DESKTOP CONTENT (z-index 10 ensures it sits ABOVE wallpapers) --- */}
+      <div className="animate-fade-in w-full h-full relative z-10 text-gray-900 dark:text-gray-100">
+        <Navbar />
+        <Welcome />
+        
+        <Home />
+        <Dock />
+        <ContextMenu />
+        <Spotlight />
+
+        {/* Windows */}
+        <Terminal />
+        <Safari />
+        <Resume />
+        <Finder />
+        <Text />
+        <Image />
+        <Contact />
+        <Photos />
+      </div>
     </div>
   );
 }
