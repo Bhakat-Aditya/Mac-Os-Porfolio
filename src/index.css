@@ -17,6 +17,15 @@ body {
 * {
   @apply transition-colors duration-300;
 }
+/* Custom Cursor */
+html, body, button, a {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="black" stroke="white" stroke-width="1"><path d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87a.45.45 0 0 0 .32-.76L6.18 2.45a.45.45 0 0 0-.68.76z"/></svg>'), auto;
+}
+
+/* Pointer cursor for clickable items */
+.cursor-pointer, button, a {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="black" stroke="white" stroke-width="1"><path d="M6 2l.01 15.23 3.98-4.01 2.97 7.2 2.78-1.15-2.93-7.14 5.14.04L6 2z"/></svg>'), pointer;
+}
 
 @theme {
   --font-georama: "Georama", sans-serif;
@@ -120,11 +129,11 @@ body {
     }
 
     .minimize {
-      @apply size-3.5 rounded-full bg-[#ffc030];
+      @apply size-3.5 rounded-full bg-[#ffc030] cursor-pointer;
     }
 
     .maximize {
-      @apply size-3.5 rounded-full bg-[#2acb42];
+      @apply size-3.5 rounded-full bg-[#2acb42] cursor-pointer;
     }
   }
 
