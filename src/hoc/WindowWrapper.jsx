@@ -10,18 +10,16 @@ function WindowWrapper(Component, windowKey) {
     const { isOpen, zIndex, isMaximized } = windows[windowKey];
     const ref = useRef(null);
     const draggableRef = useRef(null);
-    // Store original state (position & size) before maximizing
-    const historyRef = useRef({ x: 0, y: 0, width: 0, height: 0 });
+    const historyRef = useRef({ left: 0, top: 0, width: 0, height: 0 });
 
     // 1. Handle Open/Close Animation
     useGSAP(() => {
       const el = ref.current;
       if (!el || !isOpen) return;
 
-      // FIX: Ensure window is reset to default state when opening
-      // This fixes the issue where closing a maximized window and reopening it keeps it huge
+      // Reset any leftover styles from previous states
       if (!isMaximized) {
-        gsap.set(el, { clearProps: "width,height,top,left,x,y,borderRadius" });
+        gsap.set(el, { clearProps: "all" });
       }
 
       el.style.display = "block";
@@ -37,11 +35,13 @@ function WindowWrapper(Component, windowKey) {
       const el = ref.current;
       if (!el) return;
 
+      const header = el.querySelector("#window-header");
+
       const [instance] = Draggable.create(el, {
+        trigger: header,
         onPress: () => focusWindow(windowKey),
         allowEventDefault: true,
-        // Only allow dragging if not maximized
-        dragClickables: !isMaximized, 
+        dragClickables: !isMaximized,
       });
       draggableRef.current = instance;
 
@@ -54,32 +54,39 @@ function WindowWrapper(Component, windowKey) {
       if (!el || !isOpen) return;
 
       if (isMaximized) {
-        // RECORD current state
+        // 1. CAPTURE CURRENT STATE
         const rect = el.getBoundingClientRect();
-        const currentX = gsap.getProperty(el, "x");
-        const currentY = gsap.getProperty(el, "y");
-        
-        historyRef.current = { 
-            x: currentX, 
-            y: currentY, 
-            width: rect.width, 
-            height: rect.height 
+        historyRef.current = {
+          left: rect.left,
+          top: rect.top,
+          width: rect.width,
+          height: rect.height,
         };
 
         draggableRef.current?.disable();
 
-        // Calculate offset to move visual position to (0,0)
-        // The element is currently at rect.left, rect.top
-        // We want to move it by -rect.left, -rect.top relative to its CURRENT transform
-        // Formula: NewX = CurrentX - VisualLeftOffset
-        const xOffset = currentX - rect.left;
-        const yOffset = currentY - rect.top;
+        // 2. LOCK POSITION IN PIXELS (Neutralize CSS classes like -translate-y-1/2)
+        // We set the element to fixed position at its current visual location
+        gsap.set(el, {
+          position: "fixed",
+          left: rect.left,
+          top: rect.top,
+          width: rect.width,
+          height: rect.height,
+          margin: 0,
+          x: 0,
+          y: 0,
+          transform: "none", // Removes CSS transforms to prevent conflicts
+        });
 
+        // 3. ANIMATE TO FULL SCREEN
         gsap.to(el, {
-          x: xOffset,
-          y: yOffset,
+          left: 0,
+          top: 0,
           width: "100vw",
           height: "100vh",
+          maxWidth: "none", // OVERRIDE Tailwind max-w-2xl/3xl
+          maxHeight: "none",
           borderRadius: 0,
           duration: 0.4,
           ease: "power3.inOut",
@@ -87,19 +94,22 @@ function WindowWrapper(Component, windowKey) {
       } else {
         draggableRef.current?.enable();
 
-        // RESTORE to previous state
+        // 4. ANIMATE BACK TO SAVED PIXEL STATE
         gsap.to(el, {
-          x: historyRef.current.x,
-          y: historyRef.current.y,
-          width: historyRef.current.width, // Animate back to original px width
+          left: historyRef.current.left,
+          top: historyRef.current.top,
+          width: historyRef.current.width,
           height: historyRef.current.height,
-          borderRadius: "0.75rem",
+          borderRadius: "0.75rem", // rounded-xl
           duration: 0.4,
           ease: "power3.inOut",
-          // IMPORTANT: Once animation is done, remove inline styles so CSS classes take over (responsiveness)
+          // 5. RESET TO CSS CLASSES
           onComplete: () => {
-             gsap.set(el, { clearProps: "width,height" });
-          }
+            // Clear all inline styles so Tailwind classes (like left-1/2) take over again
+            gsap.set(el, { clearProps: "all" });
+            // Ensure display block is kept (gsap clearProps might remove display if it was inline)
+            el.style.display = "block";
+          },
         });
       }
     }, [isMaximized]);
