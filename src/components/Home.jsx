@@ -26,7 +26,8 @@ function Home() {
           <li
             key={project.id}
             className={clsx("group folder", project.windowPosition)}
-            onClick={() => handleOpenProject(project)}
+            // Changed to onDoubleClick
+            onDoubleClick={() => handleOpenProject(project)}
           >
             <img src="/images/folder.png" alt={project.name} />
             <p>{project.name}</p>

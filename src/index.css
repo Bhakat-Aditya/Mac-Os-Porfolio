@@ -11,6 +11,7 @@ body {
   width: 100dvw;
   overflow: hidden;
   height: 100dvh;
+  user-select: none
 }
 
 /* Global smooth transition for Dark Mode */
@@ -125,15 +126,15 @@ html, body, button, a {
     @apply flex gap-2;
 
     .close {
-      @apply size-3.5 rounded-full bg-[#ff6157] cursor-pointer;
+      @apply size-4.5 rounded-full bg-[#ff6157] cursor-pointer;
     }
 
     .minimize {
-      @apply size-3.5 rounded-full bg-[#ffc030] cursor-pointer;
+      @apply size-4.5 rounded-full bg-[#ffc030] cursor-pointer;
     }
 
     .maximize {
-      @apply size-3.5 rounded-full bg-[#2acb42] cursor-pointer;
+      @apply size-4.5 rounded-full bg-[#2acb42] cursor-pointer;
     }
   }
 
