@@ -27,12 +27,17 @@ function Resume() {
           <Download className="icon-hover" />
         </a>
       </div>
-       <Document file="files/resume.pdf">
-        <Page pageNumber={1}
-        renderTextLayer={true}
-        renderAnnotationLayer={true}
-         />
-      </Document>
+      
+      <div className="flex-1 overflow-y-auto w-full bg-gray-100 dark:bg-[#1e1e1e] p-4 flex justify-center">
+         <Document file="files/resume.pdf" className="shadow-md">
+            <Page 
+                pageNumber={1}
+                renderTextLayer={true}
+                renderAnnotationLayer={true}
+                scale={1.0} 
+            />
+        </Document>
+      </div>
     </>
   );
 }

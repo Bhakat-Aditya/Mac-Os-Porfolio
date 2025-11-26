@@ -3,23 +3,41 @@ import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 import clsx from "clsx";
 
-import useWallpaperStore from "#store/wallpaper"; 
+import useWallpaperStore from "#store/wallpaper";
 import useThemeStore from "#store/theme";
 
-import { Dock, Home, Navbar, Welcome, Boot, ContextMenu, Spotlight, Login } from "#components";
-import { Safari, Terminal, Resume, Finder, Text, Image, Contact, Photos } from "#windows";
+import {
+  Dock,
+  Home,
+  Navbar,
+  Welcome,
+  Boot,
+  ContextMenu,
+  Spotlight,
+  Login,
+} from "#components";
+import {
+  Safari,
+  Terminal,
+  Resume,
+  Finder,
+  Text,
+  Image,
+  Contact,
+  Photos,
+} from "#windows";
 
 gsap.registerPlugin(Draggable);
 
 function App() {
-  // 1. Sequence States: Booting -> Locked -> Desktop
+  
   const [isBooting, setIsBooting] = useState(true);
   const [isLocked, setIsLocked] = useState(true);
-  
+
   const { wallpapers, activeIndex } = useWallpaperStore();
   const { isDark } = useThemeStore();
 
-  // 2. Render Logic
+  
   if (isBooting) {
     return <Boot onComplete={() => setIsBooting(false)} />;
   }
@@ -28,11 +46,11 @@ function App() {
     return <Login onUnlock={() => setIsLocked(false)} />;
   }
 
-  // 3. Desktop Interface
+  
   return (
-    <div 
+    <div
       className={clsx(
-        "w-screen h-screen overflow-hidden relative", 
+        "w-screen h-screen overflow-hidden relative",
         isDark && "dark"
       )}
     >
@@ -54,7 +72,7 @@ function App() {
       <div className="animate-fade-in w-full h-full relative z-10 text-gray-900 dark:text-gray-100">
         <Navbar />
         <Welcome />
-        
+
         <Home />
         <Dock />
         <ContextMenu />

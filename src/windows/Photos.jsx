@@ -16,7 +16,7 @@ function Photo() {
           <Search className="icon" />
         </div>
       </div>
-      {/* UPDATED: Added 'flex-1 overflow-hidden' to fill remaining height */}
+      
       <div className="flex w-full flex-1 overflow-hidden">
         <div className="sidebar">
           <h2>Photos</h2>
@@ -34,7 +34,8 @@ function Photo() {
             {gallery.map(({ id, img }) => (
               <li
                 key={id}
-                onClick={() =>
+                // Changed to onDoubleClick
+                onDoubleClick={() =>
                   openWindow("imgfile", {
                     id,
                     name: "Gallery image",
@@ -45,7 +46,13 @@ function Photo() {
                   })
                 }
               >
-                <img src={img} alt={`Gallery image ${id}`} loading="lazy" />
+                {/* Added style to ensure whole photo is shown (no cropping) */}
+                <img 
+                    src={img} 
+                    alt={`Gallery image ${id}`} 
+                    loading="lazy" 
+                    style={{ objectFit: "contain" }}
+                />
               </li>
             ))}
           </ul>

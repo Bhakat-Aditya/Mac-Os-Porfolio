@@ -109,11 +109,11 @@ const techStack = [
         items: ["Tailwind CSS", "CSS"],
     },
     {
-        category: "Backend__(Learning)",
+        category: "Backend     (Learning)",
         items: ["Node.js", "Express"],
     },
     {
-        category: "Database__(Learning)",
+        category: "Database     (Learning)",
         items: ["MongoDB"],
     },
     {

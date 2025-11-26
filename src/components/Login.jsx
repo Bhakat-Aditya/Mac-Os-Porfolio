@@ -12,13 +12,20 @@ function Login({ onUnlock }) {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setLoading(true);
     
-    // Simulate authentication delay
-    setTimeout(() => {
-        setLoading(false);
-        onUnlock();
-    }, 1000);
+    // Check if the password is "adi"
+    if (password === "adi") {
+      setLoading(true);
+      
+      // Simulate authentication delay
+      setTimeout(() => {
+          setLoading(false);
+          onUnlock();
+      }, 1000);
+    } else {
+      // Alert if password is wrong
+      alert('password is adi');
+    }
   };
 
   return (
@@ -55,9 +62,9 @@ function Login({ onUnlock }) {
                             className="bg-white/20 border border-white/10 rounded-full pl-4 pr-10 py-2 text-sm placeholder-gray-300 outline-none focus:bg-white/30 transition-all w-48 backdrop-blur-sm shadow-inner"
                             autoFocus
                         />
-                        {/* Hint Tooltip */}
+                        {/* Hint Tooltip - Updated to reflect the real password requirement */}
                         <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[20px] text-gray-300 opacity-60 whitespace-nowrap">
-                            (Hint: Just press Enter)
+                            (Hint: Password is 'adi')
                         </span>
                     </div>
 

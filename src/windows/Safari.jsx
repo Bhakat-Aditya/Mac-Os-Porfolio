@@ -1,26 +1,26 @@
 import { WindowControls } from "#components";
-import { blogPosts, techStack } from "#constants"; // Imported techStack
+import { blogPosts, techStack } from "#constants"; 
 import WindowWrapper from "#hoc/WindowWrapper";
 import {
   BookOpen,
   ChevronLeft,
   ChevronRight,
-  Code, // Added icon
-  Database, // Added icon
+  Code, 
+  Database, 
   Download,
   GraduationCap,
   LayoutGrid,
-  Layers, // Added icon
-  Palette, // Added icon
+  Layers, 
+  Palette, 
   RotateCcw,
-  Server, // Added icon
+  Server, 
   ShieldCheck,
   Star,
-  Terminal // Added icon
+  Terminal 
 } from "lucide-react";
 import React, { useState } from "react";
 
-// Helper to pick icons based on category name
+
 const getCategoryIcon = (category) => {
   const lower = category.toLowerCase();
   if (lower.includes("frontend")) return <LayoutGrid className="w-6 h-6 text-blue-500" />;
@@ -36,7 +36,6 @@ function Safari() {
 
   return (
     <>
-      {/* Browser Toolbar */}
       <div id="window-header" className="flex items-center gap-4 px-4 py-3 bg-gray-100 border-b border-gray-300 dark:bg-[#2d2d2d] dark:border-black flex-none">
         <WindowControls target="safari" />
         
@@ -46,7 +45,6 @@ function Safari() {
             <RotateCcw className="w-4 h-4 mt-0.5 cursor-pointer hover:text-black dark:hover:text-white" />
         </div>
 
-        {/* URL Bar */}
         <div className="flex-1 flex items-center justify-center bg-white dark:bg-[#1e1e1e] rounded-lg px-3 py-1.5 text-xs shadow-sm border border-gray-200 dark:border-gray-700 mx-4">
             <ShieldCheck className="w-3 h-3 mr-2 text-gray-400" />
             <span className="text-gray-700 dark:text-gray-300">apple.com/education/aditya-bhakat</span>
@@ -58,16 +56,13 @@ function Safari() {
         </div>
       </div>
 
-      {/* Browser Content Area - SCROLLABLE */}
       <div className="flex-1 overflow-y-auto bg-white dark:bg-[#1e1e1e]">
-        
-        {/* Hero Section */}
+    
         <div className="relative h-64 bg-gradient-to-r from-blue-600 to-purple-600 flex flex-col items-center justify-center text-white text-center p-8">
             <GraduationCap className="w-16 h-16 mb-4 opacity-90" />
             <h1 className="text-4xl font-bold mb-2">Academic Journey</h1>
             <p className="text-blue-100 max-w-lg">Building a foundation in Commerce, transitioning into the world of Technology.</p>
             
-            {/* Tabs */}
             <div className="absolute -bottom-6 flex gap-4 flex-wrap justify-center px-4">
                 <button 
                     onClick={() => setActiveTab("education")}
@@ -90,10 +85,8 @@ function Safari() {
             </div>
         </div>
 
-        {/* Content Section */}
         <div className="max-w-4xl mx-auto p-10 pt-16">
             
-            {/* 1. Education Tab */}
             {activeTab === "education" && (
                 <div className="grid gap-8">
                     {blogPosts.map((item) => (
@@ -136,8 +129,6 @@ function Safari() {
                     ))}
                 </div>
             )}
-
-            {/* 2. Skills Tab (NEW) */}
             {activeTab === "skills" && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {techStack.map((stack, index) => (
@@ -163,7 +154,6 @@ function Safari() {
                 </div>
             )}
 
-            {/* 3. Certifications Tab */}
             {activeTab === "certifications" && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="p-6 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow bg-gradient-to-br from-gray-50 to-white dark:from-[#2d2d2d] dark:to-[#1e1e1e]">
@@ -180,7 +170,6 @@ function Safari() {
                             Intensive training on utility-first CSS frameworks, responsive design principles, and modern theming workflows.
                         </p>
                     </div>
-                    {/* You can add more certification cards here */}
                 </div>
             )}
 

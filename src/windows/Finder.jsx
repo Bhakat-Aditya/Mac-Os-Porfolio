@@ -56,8 +56,8 @@ function Finder() {
           {activeLocation.children.map((item) => (
             <li
               key={item.id}
-              // Removed manual positioning class
-              onClick={() => openItem(item)}
+              // Changed to onDoubleClick
+              onDoubleClick={() => openItem(item)}
             >
               <img src={item.icon} alt={item.name} />
               <p>{item.name}</p>
